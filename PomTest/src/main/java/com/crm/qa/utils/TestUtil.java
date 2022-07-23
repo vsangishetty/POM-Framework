@@ -27,16 +27,7 @@ public class TestUtil extends TestBase{
 	static Workbook book;
 	static Sheet sheet;
 	
-//	public void menutab() {
-//		driver.findElement(By.id("main-nav"));
-//	}
-	
-//	public static String bgColor(WebElement element)
-//	{
-//	//JavascriptExecutor js=(JavascriptExecutor)driver; 
-//	String bgcolor = element.getCssValue("background");
-//	return bgcolor;
-//	}
+
 	
 	public static Object[][] getTestData(String sheetName) throws InvalidFormatException {
 		FileInputStream file = null;
