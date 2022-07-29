@@ -17,7 +17,7 @@ import com.crm.qa.utils.WebEventListeners;
 @SuppressWarnings("deprecation")
 public class TestBase {
 	
-	public static WebDriver driver;
+	public static WebDriver driver = null;
 	public static Properties prop;
 	public static EventFiringWebDriver e_driver;
 	public static WebEventListeners eventListener;
@@ -43,17 +43,20 @@ public class TestBase {
 		
 		String browserName = prop.getProperty("browser");
 		
-		if(browserName.equals("chrome")) {
-			System.setProperty("webdriver.chrome.driver", "D:\\JavaProjects\\chromedriver_win32\\chromedriver.exe");
-
-			driver = new ChromeDriver();
+		//singleton pattern
+		if(driver==null) 
+		{
+			if(browserName.equals("chrome")) {
+				System.setProperty("webdriver.chrome.driver", "D:\\JavaProjects\\chromedriver_win32\\chromedriver.exe");
+	
+				driver = new ChromeDriver();
+			}
+			else if((browserName.equals("FF"))){
+				System.setProperty("webdriver.gecko.driver", "D:\\JavaProjects\\geckodriver-v0.31.0-win64\\geckodriver.exe");
+	
+				driver = new FirefoxDriver();
+			}
 		}
-		else if((browserName.equals("FF"))){
-			System.setProperty("webdriver.gecko.driver", "D:\\JavaProjects\\geckodriver-v0.31.0-win64\\geckodriver.exe");
-
-			driver = new FirefoxDriver();
-		}
-		
 		e_driver = new EventFiringWebDriver(driver);
 		// Now create object of EventListerHandler to register it with EventFiringWebDriver
 		eventListener = new WebEventListeners();
